@@ -45,6 +45,11 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="sandbox" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="sandbox" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -89,7 +94,7 @@
       <module name="sandbox.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="po.stqa.pft.sandbox.*" />
+          <option name="PATTERN" value="po.stqa.pft.sandbox.Coordinates" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,7 +107,7 @@
       <module name="sandbox.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="po.stqa.pft.sandbox.*" />
+          <option name="PATTERN" value="po.stqa.pft.sandbox.Coordinates" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,8 +115,68 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PointsTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;po.srqa.pft.sandbox.PointsTests&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SquaresTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;ru.stqa.pft.sandbox.SquaresTests&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="sandbox [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/sandbox" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PointsTests" />
+        <item itemvalue="Gradle.SquaresTests" />
+        <item itemvalue="Gradle.sandbox [dependencies]" />
         <item itemvalue="Application.Points" />
         <item itemvalue="Application.MyFirstProgram" />
       </list>
@@ -140,6 +205,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -159,22 +225,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="264" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1612170153746" />
-    <state width="1830" height="252" key="GridCell.Tab.0.bottom" timestamp="1612341489529">
+    <state width="1877" height="286" key="GridCell.Tab.0.bottom" timestamp="1615277877834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1612341489529" />
-    <state width="1830" height="252" key="GridCell.Tab.0.center" timestamp="1612341489529">
+    <state width="1877" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1615277877834" />
+    <state width="1877" height="286" key="GridCell.Tab.0.center" timestamp="1615277877834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1612341489529" />
-    <state width="1830" height="252" key="GridCell.Tab.0.left" timestamp="1612341489529">
+    <state width="1877" height="286" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1615277877834" />
+    <state width="1877" height="286" key="GridCell.Tab.0.left" timestamp="1615277877833">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1612341489529" />
-    <state width="1830" height="252" key="GridCell.Tab.0.right" timestamp="1612341489529">
+    <state width="1877" height="286" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1615277877833" />
+    <state width="1877" height="286" key="GridCell.Tab.0.right" timestamp="1615277877834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1830" height="252" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1612341489529" />
+    <state width="1877" height="286" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1615277877834" />
     <state x="419" y="216" key="SettingsEditor" timestamp="1612257677891">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
