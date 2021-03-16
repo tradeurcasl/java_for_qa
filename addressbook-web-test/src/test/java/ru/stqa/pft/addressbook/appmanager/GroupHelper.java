@@ -28,13 +28,21 @@ public class GroupHelper extends BaseHelper {
         click(By.name("new"));
     }
 
-    //public void deleteSelectedGroups() {
-        //click(By.name("delete"));
-    //}
+    public void deleteSelectedGroups() {
+        click(By.name("delete"));
+    }
 
-    //public void selectGroup() {
-        //click(By.xpath("(//input[@name='selected[]'])[2]"));
-    //}
+    public void selectGroup() {
+        click(By.xpath("(//input[@name='selected[]'])[2]"));
+    }
+
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
 
 }
 
