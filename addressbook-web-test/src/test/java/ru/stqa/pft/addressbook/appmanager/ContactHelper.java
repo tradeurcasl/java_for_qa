@@ -51,3 +51,4 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("add new"));
     }
 }
+

@@ -36,3 +36,4 @@ public class BaseHelper {
         new Select(wd.findElement(locator)).selectByVisibleText(selectedText);
     }
 }
+

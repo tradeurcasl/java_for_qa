@@ -122,6 +122,7 @@ public class ContactData {
         return phone2;
     }
 
+
     public String getNotes() {
         return notes;
     }
