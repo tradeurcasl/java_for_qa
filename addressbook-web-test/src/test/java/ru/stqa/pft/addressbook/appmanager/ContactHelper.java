@@ -17,8 +17,7 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("home"));
     }
 
-    public void submitContactCreation() {
-        click(By.xpath("(//input[@name='submit'])[2]"));
+    public void submitContactCreation() { click(By.name("submit"));
     }
 
     public void fillAllInformation(ContactData contactData, boolean creation) {
@@ -72,6 +71,16 @@ public class ContactHelper extends BaseHelper {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public void createContact(ContactData contact) {
+        initContactCreation();
+        fillBaseInformation(contact, true);
+        submitContactCreation();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
     }
 
 
