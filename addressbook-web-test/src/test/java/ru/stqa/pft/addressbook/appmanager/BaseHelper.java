@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.NoSuchElementException;
 
 public class BaseHelper {
     protected WebDriver wd;
@@ -34,6 +35,15 @@ public class BaseHelper {
     protected void select(By locator, String selectedText) {
         click(locator);
         new Select(wd.findElement(locator)).selectByVisibleText(selectedText);
+    }
+
+    protected boolean isElementPresent(By locator) {
+        try {
+            wd.findElement(locator);
+            return true;
+        } catch (NoSuchElementException ex){
+            return false;
+        }
     }
 }
 
