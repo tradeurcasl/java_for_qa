@@ -11,9 +11,9 @@ public class GroupHelper extends BaseHelper {
         super(wd);
     }
 
-    public void returnToGroupPage() {
-        click(By.linkText("group page"));
-    }
+    //public void returnToGroupPage() {
+        //click(By.linkText("group page"));
+    //}
 
     public void submitGroupCreation() {
         click(By.name("submit"));

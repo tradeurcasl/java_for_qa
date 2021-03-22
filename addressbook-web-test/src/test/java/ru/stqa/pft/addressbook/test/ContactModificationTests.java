@@ -10,7 +10,7 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().editContact();
         app.getContactHelper().fillAllInformation(new ContactData("111!", "www","83838","737277273", "_", "-","83838","737277273", "_", "-","83838","737277273", "_", "-", "kkk"), true);
         app.getContactHelper().submitContactModification();
-        app.getContactHelper().returnToHomePage();
+        app.getNavigationHelper().returnToHomePage();
 
     }
 }
