@@ -75,7 +75,7 @@ public class ContactHelper extends BaseHelper {
 
     public void createContact(ContactData contact) {
         initContactCreation();
-        fillBaseInformation(contact, true);
+        fillAllInformation(contact, true);
         submitContactCreation();
     }
 
