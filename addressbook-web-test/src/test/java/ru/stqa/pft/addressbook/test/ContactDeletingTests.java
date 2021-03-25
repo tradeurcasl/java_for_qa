@@ -5,15 +5,20 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import org.testng.Assert;
 import java.util.List;
 import java.util.Comparator;
+import org.testng.annotations.BeforeMethod;
+
 
 
 public class ContactDeletingTests extends TestBase {
+    @BeforeMethod
+    public void ensurePreconditions() {
+        if (!app.getContactHelper().isThereAContact()) {
+            app.getContactHelper().createContact(new ContactData("Liza", "Cozzy", "nozzy", "Jns", "Peterburg", "335999", "8923294455","gmail@gmail.com", "ssstr.ru", "26", "January", "1994", "-", "Test1","hi!"));
+        }
+    }
 
     @Test
     public void testContactDeleting() {
-        if (! app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("Liza", "Cozzy", "nozzy", "Jns", "Peterburg", "335999", "8923294455","gmail@gmail.com", "ssstr.ru", "26", "January", "1994", "-", "Test1","hi!"));
-        }
         app.goTo().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size() - 1);

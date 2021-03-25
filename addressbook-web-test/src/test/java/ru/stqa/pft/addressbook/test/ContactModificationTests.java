@@ -5,24 +5,28 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import org.testng.Assert;
 import java.util.List;
 import java.util.Comparator;
+import org.testng.annotations.BeforeMethod;
+
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
-    public void testContactModification() {
+    @BeforeMethod
+    public void ensurePreconditions(){
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("Liza", "Cozzy", "nozzy", "Jns", "Peterburg", "335999", "8923294455","gmail@gmail.com", "ssstr.ru", "26", "January", "1994", "-", "Test1","hi!"));
         }
+    }
+
+    @Test
+    public void testContactModification() {
         app.goTo().returnToHomePage();
         List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().editContact(before.size()-1);
-        ContactData contact = new ContactData(before.get(before.size()-1).getId(),"111!", "www","83838","737277273", "_", "-","83838","737277273", "_", "-","83838","737277273", "_", "-", "kkk");
-        app.getContactHelper().fillAllInformation(contact, false);
-        app.getContactHelper().submitContactModification();
-        app.goTo().returnToHomePage();
+        int index = before.size()-1;
+        ContactData contact = new ContactData(before.get(index).getId(),"Liza", "Cozzy", "nozzy", "Jns", "Peterburg", "335999", "8923294455","gmail@gmail.com", "ssstr.ru", "26", "January", "1994", "-", "Test1","hi!"));
+        app.getContactHelper().modifyContact(index, contact);
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
-        before.remove(before.size()-1);
+        before.remove(index);
         before.add(contact);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
