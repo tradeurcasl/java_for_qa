@@ -23,7 +23,5 @@ public class GroupDeletionTest extends TestBase {
         app.getNavigationHelper().returnToHomePage();
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
-        app.getNavigationHelper().returnToHomePage();
     }
-
-}
+    }
