@@ -98,9 +98,10 @@ public class ContactHelper extends BaseHelper {
         List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            String firstname = cells.get(1).getText();
-            String lastname = cells.get(2).getText();
-            ContactData contact = new ContactData(firstname, lastname,null, null,null,null,null,null,null,null,null,null,null,null,null);
+            int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            ContactData contact = new ContactData(id, firstname, lastname,null, null,null,null,null,null,null,null,null,null,null,null,null);
             contacts.add(contact);
         }
         return contacts;
