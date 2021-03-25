@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.test;
 
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 import org.testng.Assert;
 import java.util.List;
 
