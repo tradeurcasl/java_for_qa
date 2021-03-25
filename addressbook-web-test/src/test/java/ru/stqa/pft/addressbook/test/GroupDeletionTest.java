@@ -4,6 +4,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import java.util.List;
+import java.util.Comparator;
 
 
 public class GroupDeletionTest extends TestBase {
@@ -22,6 +23,9 @@ public class GroupDeletionTest extends TestBase {
         Assert.assertEquals(after.size(), before.size() - 1);
         app.getNavigationHelper().returnToHomePage();
         before.remove(before.size() - 1);
+        Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        before.sort(byId);
+        after.sort(byId);
         Assert.assertEquals(before, after);
     }
     }
