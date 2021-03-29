@@ -10,7 +10,8 @@ import org.openqa.selenium.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.WebElement;
-
+import java.util.Set;
+import java.util.HashSet;
 
 
 public class ContactHelper extends BaseHelper {
@@ -60,6 +61,9 @@ public class ContactHelper extends BaseHelper {
         wd.findElements(By.xpath("(//input[@name='selected[]'])")).get(index).click();
     }
 
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();}
+
     public void deleteContact() {
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -82,11 +86,15 @@ public class ContactHelper extends BaseHelper {
         submitContactCreation();
     }
 
-    public void modify(int index, ContactData contact) {
-        editContact(index);
+    public void modify(ContactData contact) {
+        editContactById(contact.getId());
         fillAllInformation(contact, false);
         submitContactModification();
         returnToHomePage();
+    }
+
+    public void editContactById(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id +"']")).click();
     }
 
     public void delete(int index) {
@@ -96,6 +104,12 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
+        deleteContact();
+        closeAlert();
+        returnToHomePage();
+    }
 
     public boolean isThereAContact() {
         return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
@@ -113,8 +127,21 @@ public class ContactHelper extends BaseHelper {
             int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
             String firstname = cells.get(2).getText();
             String lastname = cells.get(1).getText();
-            ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null, null, null, null, null, null, null, null, null, null);
-            contacts.add(contact);
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+        }
+        return contacts;
+
+}
+
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
         }
         return contacts;
     }
