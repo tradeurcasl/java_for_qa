@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.model.Contacts;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -82,6 +83,7 @@ public class ContactHelper extends BaseHelper {
         initContactCreation();
         fillAllInformation(contact, true);
         submitContactCreation();
+        contactCache = null;
     }
 
     public void modify(ContactData contact) {
@@ -106,6 +108,7 @@ public class ContactHelper extends BaseHelper {
         selectContactById(contact.getId());
         deleteContact();
         closeAlert();
+        contactCache = null;
         returnToHomePage();
     }
 
@@ -131,17 +134,23 @@ public class ContactHelper extends BaseHelper {
 
 }
 
+    private Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null){
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> rows = wd.findElements(By.cssSelector("tr[name='entry']"));
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
             int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
             String firstname = cells.get(2).getText();
             String lastname = cells.get(1).getText();
-            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+            contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
         }
-        return contacts;
+
+        return new Contacts(contactCache);
     }
 
     public void returnToHomePage() {
