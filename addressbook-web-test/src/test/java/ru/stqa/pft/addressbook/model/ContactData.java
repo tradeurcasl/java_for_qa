@@ -20,6 +20,16 @@ public class ContactData {
     private String aday;
     private String notes;
     private String group;
+    private String allPhones;
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
 
     public String getFirstname() {
         return firstname;
