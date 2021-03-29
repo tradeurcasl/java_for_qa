@@ -152,10 +152,10 @@ public class ContactHelper extends BaseHelper {
             String lastname = cells.get(1).getText();
             String address = cells.get(3).getText();
             String allPhones = cells.get(5).getText();
-            //String allEmails = cells.get(4).getText();
+            String allEmails = cells.get(4).getText();
             String addresses = cells.get(3).getText();
             contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname)
-                    .withAddress(address).withAllPhones(allPhones)); //.withEmail(emails[0]).withEmail2(emails[1]))
+                    .withAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
         }
 
         return new Contacts(contactCache);
