@@ -112,11 +112,12 @@ public class ContactHelper extends BaseHelper {
         returnToHomePage();
     }
 
-    public boolean isThereAContact() {
+    public boolean isThereAContact()
+    {
         return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
     }
 
-    public int getContactCount() {
+    public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
