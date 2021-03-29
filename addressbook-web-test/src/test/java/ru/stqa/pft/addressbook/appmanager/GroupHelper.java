@@ -72,11 +72,12 @@ public class GroupHelper extends BaseHelper {
         returnToGroupPage();
     }
 
-    public boolean isThereAGroup() {
+    public boolean isThereAGroup()
+    {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public int getGroupCount() {
+    public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
