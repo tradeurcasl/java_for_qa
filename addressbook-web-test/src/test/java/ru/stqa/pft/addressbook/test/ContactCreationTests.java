@@ -19,19 +19,19 @@ public class ContactCreationTests extends TestBase {
     @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<Object[]>();
-        File photo = new File("src/test/resources/stru.jpg");
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
-        String xml = "";
-        String line = reader.readLine();
-        while (line != null){
-            xml += line;
-            line = reader.readLine();
-        }
-        XStream xstream = new XStream();
-        xstream.processAnnotations(ContactData.class);
-        List <ContactData> contacts =  (List <ContactData>) xstream.fromXML(xml);
-        return contacts.stream().map((g)->new Object[] {g}).collect(Collectors.toList()).iterator();
-    }
+        File photo = new File("src/test/resources/pol.jpg");
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
+            String xml = "";
+            String line = reader.readLine();
+            while (line != null) {
+                xml += line;
+                line = reader.readLine();
+            }
+            XStream xstream = new XStream();
+            xstream.processAnnotations(ContactData.class);
+            List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+            return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+            }}
 
     @Test (dataProvider = "validContacts")
     public void testCreationNewContact(ContactData contact) throws Exception {
@@ -58,8 +58,8 @@ public class ContactCreationTests extends TestBase {
         assertThat(after, equalTo(before));
     }
 
-    @Test (enabled = false)
-    public void testCurrentDir() throws Exception {
+    @Test(enabled = false)
+    public void testCurrentDir() {
         File currentDir = new File(".");
         System.out.println(currentDir.getAbsolutePath());
         File photo = new File("src/test/resources/pol.jpg");
