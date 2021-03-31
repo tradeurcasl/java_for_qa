@@ -87,14 +87,14 @@ public class ContactData {
 
     @Column(name="photo")
     @Type(type="text")
-    private String photo;
+    private File photo;
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo.getPath();
+        this.photo = photo;
         return this;
     }
     public File getPhoto() {
-        return new File(photo);
+        return photo;
     }
 
     public String getAllEmails() {
