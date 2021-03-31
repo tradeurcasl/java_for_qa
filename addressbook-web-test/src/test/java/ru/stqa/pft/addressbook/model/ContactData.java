@@ -6,7 +6,6 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table (name = "addressbook")
@@ -26,38 +25,45 @@ public class ContactData {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name="nickname")
+    @Transient
     private String nickname;
 
-    @Column(name="title")
+    @Transient
     private String title;
 
     @Column(name="address")
     @Type(type="text")
     private String address;
 
-    @Column(name="home")
-    @Type(type="text")
+    @Transient
     private String homenumber;
 
-    @Column(name = "mobile")
-    @Type(type = "text")
+    @Transient
     private String mobile;
 
-    @Column(name="email")
-    @Type(type="text")
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ContactData that = (ContactData) o;
+        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, lastname, address);
+    }
+
+    @Transient
     private String email;
 
-    @Column(name="email2")
-    @Type(type="text")
+    @Transient
     private String email2;
 
-    @Column(name="email3")
-    @Type(type="text")
+    @Transient
     private String email3;
 
-    @Column(name="homepage")
-    @Type(type="text")
+    @Transient
     private String homepage;
 
     @Transient
@@ -72,8 +78,7 @@ public class ContactData {
     @Transient
     private String aday;
 
-    @Column(name="notes")
-    @Type(type="text")
+    @Transient
     private String notes;
 
     @Transient
@@ -252,20 +257,6 @@ public class ContactData {
     public ContactData withBmonth(String bmonth) {
         this.bmonth = bmonth;
         return this;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ContactData that = (ContactData) o;
-        return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstname, lastname);
     }
 
     public ContactData withByear(String byear) {
