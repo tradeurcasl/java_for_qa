@@ -11,6 +11,8 @@ import org.testng.annotations.DataProvider;
 import java.io.*;
 import com.thoughtworks.xstream.XStream;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GroupCreationTests extends TestBase {
 
