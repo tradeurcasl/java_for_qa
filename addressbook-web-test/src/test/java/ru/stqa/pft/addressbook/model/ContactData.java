@@ -4,32 +4,98 @@ import java.util.Objects;
 import java.io.File;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+import javax.persistence.*;
+
+@Entity
+@Table (name = "addressbook")
 
 @XStreamAlias("contact")
 
 public class ContactData {
     @XStreamOmitField
+
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
+
+    @Column(name = "firstname")
     private String firstname;
+
+    @Column(name = "lastname")
     private String lastname;
+
+    @Column(name="nickname")
     private String nickname;
+
+    @Column(name="title")
     private String title;
+
+    @Column(name="address")
+    @Type(type="text")
     private String address;
+
+    @Column(name="home")
+    @Type(type="text")
     private String homenumber;
+
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobile;
+
+    @Column(name="email")
+    @Type(type="text")
     private String email;
+
+    @Column(name="email2")
+    @Type(type="text")
     private String email2;
+
+    @Column(name="email3")
+    @Type(type="text")
     private String email3;
+
+    @Column(name="homepage")
+    @Type(type="text")
     private String homepage;
+
+    @Transient
     private String bday;
+
+    @Transient
     private String bmonth;
+
+    @Transient
     private String byear;
+
+    @Transient
     private String aday;
+
+    @Column(name="notes")
+    @Type(type="text")
     private String notes;
+
+    @Transient
     private String group;
+
+
+    @Transient
     private String allPhones;
+
+    @Transient
     private String allEmails;
-    private File photo;
+
+    @Column(name="photo")
+    @Type(type="text")
+    private String photo;
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo.getPath();
+        return this;
+    }
+    public File getPhoto() {
+        return new File(photo);
+    }
 
     public String getAllEmails() {
         return allEmails;
@@ -187,14 +253,6 @@ public class ContactData {
         return this;
     }
 
-    public File getPhoto() {
-        return photo;
-    }
-
-    public ContactData withPhoto(File photo) {
-        this.photo = photo;
-        return this;
-    }
 
     @Override
     public boolean equals(Object o) {
