@@ -12,5 +12,8 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
-.idea/csv-plugin.xml
+.idea/
 .log
+gradle/
+.idea/gradle.xml
+.idea/vcs.xml
