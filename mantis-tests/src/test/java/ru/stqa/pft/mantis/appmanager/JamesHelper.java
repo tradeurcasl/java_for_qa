@@ -143,7 +143,7 @@ public class JamesHelper {
                 return allMail;
             }
             try {
-                Thread.sleep(15000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
