@@ -19,6 +19,8 @@ public class ApplicationManager {
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private SessionHelper session;
+    private DbHelper dbHelper;
 
     private String browser;
 
@@ -99,5 +101,16 @@ public class ApplicationManager {
             jamesHelper = new JamesHelper(this);
         }
         return jamesHelper;
+    }
+
+    public SessionHelper session(){
+        if (session == null) {
+            session = new SessionHelper(this);
+        }
+        return session;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
     }
 }
