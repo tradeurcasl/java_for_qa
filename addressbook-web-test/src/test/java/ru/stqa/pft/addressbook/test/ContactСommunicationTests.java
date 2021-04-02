@@ -37,7 +37,7 @@ public class ContactСommunicationTests extends TestBase{
 
 
     private String mergePhones(ContactData contact) {
-        return Arrays.asList(contact.getHomenumber(), contact.getMobile()).stream().filter((s) -> (s) != null).filter((s) -> !(s).equals(""))
+        return Arrays.asList(contact.getHomenumber(), contact.getWorkPhone(), contact.getMobile()).stream().filter((s) -> (s) != null).filter((s) -> !(s).equals(""))
                 .map(ContactСommunicationTests::cleaned).collect(Collectors.joining("\n"));
 
     }
