@@ -5,6 +5,26 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
+    private String resolution;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Issue withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public Issue withResolution(String resolution) {
+        this.resolution = resolution;
+        return this;
+    }
 
     public int getId() {
         return id;
