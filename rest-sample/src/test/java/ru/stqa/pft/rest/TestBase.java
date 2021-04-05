@@ -1,10 +1,10 @@
 package ru.stqa.pft.rest;
 
 import org.testng.SkipException;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Set;
+
 
 public class TestBase {
     public boolean isIssueOpen(int issueId) throws IOException, IOException {

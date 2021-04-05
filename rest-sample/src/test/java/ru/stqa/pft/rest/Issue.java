@@ -67,5 +67,6 @@ public class Issue {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getSubject(), getDescription(), getStateName());
+
     }
 }

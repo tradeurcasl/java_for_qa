@@ -7,9 +7,9 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
-
 import java.io.IOException;
 import java.util.Set;
+
 
 public class IssueHelper {
     public static Set<Issue> getIssues() throws IOException {
