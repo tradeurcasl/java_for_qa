@@ -22,6 +22,7 @@ public class ApplicationManager {
     private SessionHelper session;
     private DbHelper dbHelper;
     private SoapHelper soapHelper;
+    private AdminHelper adminHelper;
 
     private String browser;
 
@@ -34,6 +35,7 @@ public class ApplicationManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties",target))));
 
+        dbHelper = new DbHelper();
 
         if (browser.equals(BrowserType.CHROME)){
             wd = new ChromeDriver();
@@ -115,10 +117,16 @@ public class ApplicationManager {
         return dbHelper;
     }
 
+    public AdminHelper admin() {
+        if (adminHelper == null) {
+            adminHelper = new AdminHelper(this);
+        }
+        return adminHelper;
+    }
+
     public SoapHelper soap(){
         if (soapHelper == null) {
             soapHelper = new SoapHelper(this);
         }
         return soapHelper;
-    }
-}
+    }}

@@ -1,61 +1,28 @@
 package ru.stqa.pft.mantis.model;
 
-import javax.persistence.*;
-import java.util.Objects;
+import com.google.common.collect.ForwardingSet;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
-@Table(name = "mantis_user_table")
+public class Users extends ForwardingSet<UserData> {
 
-public class Users {
-    @Id
-    @Column(name = "id")
-    private int id = Integer.MAX_VALUE;
+    private Set<UserData> delegate;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "password")
-    private String password;
-
-    public int getId() {
-        return id;
+    public Users(Users users) {
+        this.delegate = new HashSet<UserData>(users.delegate);
     }
 
-    public String getUsername() {
-        return username;
+    public Users() {
+        this.delegate = new HashSet<UserData>();
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
+    public Users(Collection<UserData> users) {
+        this.delegate = new HashSet<UserData>(users);
     }
 
     @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Users)) return false;
-        Users users = (Users) o;
-        return getId() == users.getId() && Objects.equals(getUsername(), users.getUsername()) && Objects.equals(getEmail(), users.getEmail());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUsername(), getEmail());
+    protected Set<UserData> delegate() {
+        return delegate;
     }
 }
