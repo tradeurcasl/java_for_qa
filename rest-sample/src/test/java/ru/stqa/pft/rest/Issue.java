@@ -1,10 +1,22 @@
 package ru.stqa.pft.rest;
 
+import java.util.Objects;
+
 public class Issue {
 
     private int id;
     private String subject;
     private String description;
+    private String state_name;
+
+    public String getStateName() {
+        return state_name;
+    }
+
+    public Issue withState_name(String state_name) {
+        this.state_name = state_name;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -34,22 +46,26 @@ public class Issue {
     }
 
     @Override
+    public String toString() {
+        return "Issue{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", description='" + description + '\'' +
+                ", state_name='" + state_name + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Issue issue = (Issue) o;
-
-        if (id != issue.id) return false;
-        if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
-        return description != null ? description.equals(issue.description) : issue.description == null;
+        return getId() == issue.getId() && Objects.equals(getSubject(), issue.getSubject()) && Objects.equals(getDescription(), issue.getDescription()) && Objects.equals(getStateName(), issue.getStateName());
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (subject != null ? subject.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
+        return Objects.hash(getId(), getSubject(), getDescription(), getStateName());
     }
 }
