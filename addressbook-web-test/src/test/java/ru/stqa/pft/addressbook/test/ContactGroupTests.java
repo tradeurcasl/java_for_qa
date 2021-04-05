@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactGroupTests extends TestBase{
     @BeforeMethod
@@ -37,26 +39,24 @@ public class ContactGroupTests extends TestBase{
     }
 
     @Test
-    public void testContactAddToGroup(){
-        ContactData contactData = app.db().contactNotInGroup();
-        app.contact().selectContactNotGroup(contactData);
-        Groups groups = app.db().groups();
-        GroupData group = groups.iterator().next();
-        app.contact().selectGroup(group);
+    public void testContactAddToGroup() throws Exception{
+        Contacts before = app.db().contacts();
+        app.goTo().homePage();
+        app.contact().selectContactById(before.iterator().next().getId());
         app.contact().addContactToGroup();
-        ContactData contactAfter = app.db().contactById(contactData.getId());
-        AssertJUnit.assertTrue(contactAfter.getGroups().contains(group));
+        Contacts after = app.db().contacts();
+        assertThat(before.iterator().next(), equalTo(after.iterator().next()));
+        verifyContactListInUI();
     }
 
     @Test
-    public void testContactRemoveFromGroup() {
-        ContactData contactData = app.db().contactInGroup();
-        GroupData groupData = contactData.getGroups().iterator().next();
-        app.contact().getGroupData(groupData);
-        app.contact().selectContactNotInGroup(contactData);
-        app.contact().removeContactFromGroup();
+    public void testContactRemoveFromGroup() throws Exception{
+        Contacts before = app.db().contacts();
         app.goTo().homePage();
-        ContactData contactAfter = app.db().contactById(contactData.getId());
-        AssertJUnit.assertTrue(contactAfter.getGroups().contains(groupData));
+        app.contact().selectGroup(before);
+        app.contact().removeContactFromGroup();
+        Contacts after = app.db().contacts();
+        assertThat(before.iterator().next(), equalTo(after.iterator().next()));
+        verifyContactListInUI();
     }
 }
