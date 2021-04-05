@@ -10,6 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.Platform;
+
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
@@ -50,6 +52,7 @@ public class ApplicationManager {
             else {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
                 capabilities.setBrowserName(browser);
+                capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "windows")));
                 wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
         }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
