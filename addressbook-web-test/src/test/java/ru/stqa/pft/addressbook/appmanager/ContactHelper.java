@@ -89,7 +89,7 @@ public class ContactHelper extends BaseHelper {
         click(By.name("update"));
     }
 
-    public void create(ContactData contact) {
+    public void create(ContactData contact, boolean creation ) {
         initContactCreation();
         fillAllInformation(contact, true);
         submitContactCreation();
@@ -98,7 +98,7 @@ public class ContactHelper extends BaseHelper {
 
     public void modify(ContactData contact) {
         editContactById(contact.getId());
-        fillAllInformation(contact, false);
+        fillAllInformation(contact, true);
         submitContactModification();
         returnToHomePage();
     }
@@ -202,9 +202,16 @@ public class ContactHelper extends BaseHelper {
     public void selectGroup(GroupData group) {
         wd.findElement(By.xpath(String.format("//select[@name='to_group']/option[@value='%s']", group.getId()))).click();
     }
-    public void selectContactNotInGroup(ContactData contact) {
+
+    public void selectContactWithoutGroup(ContactData contact) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
         click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
     }
+
+    public void selectContact(ContactData contact) {
+        click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
+    }
+
     public void removeContactFromGroup() {
         click(By.name("remove"));
         contactCache = null;
@@ -215,14 +222,11 @@ public class ContactHelper extends BaseHelper {
         click(By.xpath(String.format("//select[@name='group']/option[text() = '%s']", groupData.getName())));;
     }
 
-    public void selectContactNotGroup(ContactData contact) {
-        click(By.xpath(String.format("//input[@type='checkbox']", contact.getId())));
-    }
-
     public void addContactToGroup() {
         click(By.name("add"));
         contactCache = null;
         returnToHomePage();
-    } }
+    }
+}
 
 

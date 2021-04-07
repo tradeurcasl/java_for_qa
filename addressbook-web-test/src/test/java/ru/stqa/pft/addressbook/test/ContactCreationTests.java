@@ -37,7 +37,7 @@ public class ContactCreationTests extends TestBase {
     public void testCreationNewContact(ContactData contact) throws Exception {
         Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/pol.jpg");
-        app.contact().create(contact);
+        app.contact().create(contact, true);
         app.goTo().homePage();
         MatcherAssert.assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.db().contacts();
@@ -52,7 +52,7 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         Contacts before = app.contact().all();
         ContactData contact = new ContactData().withFirstname("Mary'").withLastname("Brown").withNickname("mar").withTitle("Jn").withAddress("Petrozavodsk").withHomenumber("335999").withMobile("8923294455").withEmail("dfdfn@gmail.com").withEmail2("new_second@mail.com").withHomepage("ssstr.ru").withBday("6").withBmonth("February").withByear("1990").withAday("-").withNotes("hi!");
-        app.contact().create(contact);
+        app.contact().create(contact, true);
         app.goTo().homePage();
         assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.contact().all();

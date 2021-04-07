@@ -22,32 +22,25 @@ public class DBHelper {
         sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
     }
 
-    public Groups groups (){
+
+    public Groups groups(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<GroupData> result = session.createQuery( "from GroupData" ).list();
+        List<GroupData> result = session.createQuery("from GroupData").list();
         session.getTransaction().commit();
         session.close();
         return new Groups(result);
     }
 
-    public Contacts contacts (){
+    public Contacts contacts(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery( "from ContactData where deprecated = '0000-00-00'" ).list();
+        List<ContactData> result = session.createQuery("from ContactData where deprecated = '0000-00-00'").list();
         session.getTransaction().commit();
         session.close();
         return new Contacts(result);
     }
 
-    public ContactData contactNotInGroup() {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        List<ContactData> result = session.createQuery("from ContactData where groups.size = 0 and deprecated = '0000-00-00'").list();
-        session.getTransaction().commit();
-        session.close();
-        return result.iterator().next();
-    }
 
     public ContactData contactById(int id) {
         Session session = sessionFactory.openSession();
@@ -57,10 +50,38 @@ public class DBHelper {
         session.close();
         return result.iterator().next();
     }
-    public ContactData contactInGroup() {
+
+    public Contacts contactWithoutGroups (){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactData> result = session.createQuery(String.format("from ContactData where groups.size > 0 and deprecated = '0000-00-00'")).list();
+        List<ContactData> result = session.createQuery( "from ContactData where groups.size = 0 and deprecated = '0000-00-00'" ).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
+
+    public Contacts contactWithGroups (){
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery( "from ContactData where groups.size > 0 and deprecated = '0000-00-00'" ).list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
+
+    public ContactData contactWithoutGroup() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData where groups.size = 0 and deprecated = '0000-00-00'").list();
+        session.getTransaction().commit();
+        session.close();
+        return result.iterator().next();
+    }
+
+    public ContactData contactWithGroup() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData where groups.size > 0 and deprecated = '0000-00-00'").list();
         session.getTransaction().commit();
         session.close();
         return result.iterator().next();
