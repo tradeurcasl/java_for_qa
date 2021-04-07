@@ -3,8 +3,8 @@ package ru.stqa.pft.rest;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.Set;
-import static org.testng.Assert.assertEquals;
 
+import static org.testng.Assert.assertEquals;
 
 public class RestTest extends TestBase{
 

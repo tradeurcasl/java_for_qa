@@ -13,10 +13,21 @@ import java.util.Set;
 
 public class IssueHelper {
     public static Set<Issue> getIssues() throws IOException {
-        String json =getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json")).returnContent().asString();
-        JsonElement parsed = new JsonParser().parse(json);
+        String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json"))
+                .returnContent().asString();
+        JsonElement parsed = JsonParser.parseString(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
-        return new Gson().fromJson(issues,new TypeToken<Set<Issue>>(){}.getType());
+        return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+        }.getType());
+    }
+
+    public static Set<Issue> getIssue(String issueId) throws IOException {
+        String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+                .returnContent().asString();
+        JsonElement parsed = JsonParser.parseString(json);
+        JsonElement issues = parsed.getAsJsonObject().get("issues");
+        return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
+        }.getType());
     }
 
     private static Executor getExecutor() {
