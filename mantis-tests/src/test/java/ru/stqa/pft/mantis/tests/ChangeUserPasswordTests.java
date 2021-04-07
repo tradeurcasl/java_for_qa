@@ -30,15 +30,15 @@ public class ChangeUserPasswordTests extends TestBase{
         app.admin().login("administrator", "root");
         app.admin().manageUsers();
         Users users = app.db().mantisUser();
-        UserData userData = users.iterator().next();
-        app.admin().reset(userData);
+        UserData user = users.iterator().next();
+        app.admin().reset(user);
         List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
-        String conformationLink = app.mail().findConformationLink(mailMessages, userData.getEmail());
+        String conformationLink = app.mail().findConformationLink(mailMessages, user.getEmail());
         String password = "newPassword";
-        app.admin().finish(conformationLink, userData, password);
+        app.admin().finish(conformationLink, user, password);
 
-        assertTrue(session.login(userData.getUsername(), password));
-        assertTrue(session.isLoggedInAs(userData.getUsername()));
+        assertTrue(session.login(user.getUsername(), password));
+        assertTrue(session.isLoggedInAs(user.getUsername()));
     }
 
     @AfterMethod(alwaysRun = true)

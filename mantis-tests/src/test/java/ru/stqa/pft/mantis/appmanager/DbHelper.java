@@ -6,6 +6,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.stqa.pft.mantis.model.Users;
+import ru.stqa.pft.mantis.model.UserData;
+
+import java.util.List;
 
 public class DbHelper {
 
@@ -21,9 +24,9 @@ public class DbHelper {
     public Users mantisUser(){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        Users result =(Users) session.createQuery("from Users where username = 'liza' ").list();
+        List<UserData> result = session.createQuery( "from UserData where username <> 'administrator'" ).list();
         session.getTransaction().commit();
         session.close();
-        return result;
+        return new Users(result);
 }
 }
