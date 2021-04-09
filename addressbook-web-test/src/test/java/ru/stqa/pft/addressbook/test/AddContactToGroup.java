@@ -14,10 +14,6 @@ public class AddContactToGroup extends TestBase{
 
     public void ensurePreconditions() {
         app.goTo().homePage();
-        if (app.db().contacts().size() == 0) {
-            app.contact().create(new ContactData().withFirstname("pol").withLastname("tok"), true);
-            app.goTo().homePage();
-        }
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test 0"));
