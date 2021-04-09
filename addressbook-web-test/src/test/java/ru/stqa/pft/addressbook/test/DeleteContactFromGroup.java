@@ -13,20 +13,18 @@ public class DeleteContactFromGroup extends TestBase {
     @BeforeMethod
     public void ensurePreconditionsSorted() {
         app.goTo().homePage();
+        
         if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFirstname("pol").withLastname("tok"), true);
             app.goTo().homePage();
         }
+
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test 0"));
             app.goTo().homePage();
         }
 
-        if (app.db().contactWithoutGroups().size() == 0) {
-            app.goTo().homePage();
-            app.contact().create(new ContactData().withFirstname("pol").withLastname("tok"), true);
-        }
         if (app.db().contactWithGroups().size() == 0) {
             ContactData before = app.db().contactWithoutGroup();
             Groups groups = app.db().groups();
